@@ -1,8 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css'
+import styled from 'styled-components'
+// import styles from './style.module.css'
+// import './indexscss.scss'
 
-// Styling : 
+
+// Styling :   a) CSS in React, b) SASS(Syntactically awesome stylesheets) in React
+//             c)  CSS Modules in, d) styled components
+
+// HTML, CSS, Bootstrap, Javascript
+// ReactJS, Node, Express, MongoDB
+
+const Button=styled.button`
+  border: 2px solid black;
+  cursor: pointer;
+  background: transparent;
+
+&:hover{
+  background: teal;
+  color: white;
+}
+`
 function App(){
     const[fruits,setFruits]=React.useState([
       {id:1,name:"Apple",isFavourite:true},
@@ -11,6 +29,7 @@ function App(){
       {id:4,name:"Grapes",isFavourite:false}
     ])
     const handleClick=(item)=>{
+      console.log(item)
       const newFruits=fruits.map((fruit)=>{
          if(fruit.id===item.id){
            return{
@@ -38,9 +57,9 @@ function FruitList({items,onClick}){
         <ul>
             {items.map((item)=>(
               <li key={item.id}>{item.name}
-              <button type="button" className="button" onClick={()=>onClick(item)}>
+              <Button type="button" onClick={()=>onClick(item)}>
                   {item.isFavourite?'Unlike':'Like'}
-              </button>
+              </Button>
               </li>
             ))}
         </ul>
